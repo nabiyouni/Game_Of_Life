@@ -27,4 +27,13 @@ public class ButtonManager : MonoBehaviour
         gameManager.setRunState(newState);
     }
 
+    public void clearScreen()
+    {
+        gameManager.clearScreen();
+    }
+
+    public void randomizeScreen()
+    {
+        gameManager.randomizeScreen();
+    }
 }

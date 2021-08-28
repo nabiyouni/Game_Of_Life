@@ -158,4 +158,37 @@ public class GameManager2D : MonoBehaviour
     {
         runState = state;
     }
+
+    public void clearScreen()
+    {
+        for (int i = 0; i < rowsCount; i++)
+        {
+            for (int k = 0; k < colsCount; k++)
+            {
+                elements[i, k].value = false;
+                setRenderer(i, k);
+            }
+        }
+    }
+
+    public void randomizeScreen()
+    {
+        for (int i = 0; i < rowsCount; i++)
+        {
+            for (int k = 0; k < colsCount; k++)
+            {
+                if (Random.Range(0, 2) == 1)
+                {
+                    elements[i, k].value = true;
+                    setRenderer(i, k);
+                }
+                else
+                {
+                    elements[i, k].value = false;
+                    setRenderer(i, k);
+                }
+
+            }
+        }
+    }
 }
