@@ -14,7 +14,6 @@ public class GameManager2D : MonoBehaviour
     public int colsCount = 23;
 
     public Color activeElementColor = Color.white;
-    public Color deactiveElementColor = Color.black;
     private Material activeElementMaterial;
     private Material deactiveElementMaterial;
 
@@ -35,9 +34,6 @@ public class GameManager2D : MonoBehaviour
         gameFrameStart = Time.time + gameFrameLatency;
         elements = new Element[rowsCount, colsCount];
 
-        deactiveElementColor.a = 0.3f;
-        activeElementColor.a = 0.5f;
-
         for (int i = 0; i < rowsCount; i++)
         {
             for (int k = 0; k < colsCount; k++)
@@ -46,8 +42,9 @@ public class GameManager2D : MonoBehaviour
                 elements[i, k].gameObject.GetComponent<Renderer>().material = sampleElement.GetComponent<Renderer>().material;
                 elements[i, k].gameObject.transform.parent = parentTransform.transform;
                 elements[i, k].gameObject.transform.position = new Vector3(i, 0, k);
-                var color = elements[i, k].value ? activeElementColor : deactiveElementColor;
-                elements[i, k].gameObject.GetComponent<Renderer>().material.color = color;
+                if (!elements[i, k].value) {
+                    elements[i, k].gameObject.GetComponent<Renderer>().enabled = false;
+                }
             }
         }
     }
@@ -76,7 +73,12 @@ public class GameManager2D : MonoBehaviour
     private void toggle(int row, int col)
     {
         elements[row, col].value = !elements[row, col].value;
-        var color = elements[row, col].value ? activeElementColor : deactiveElementColor;
-        elements[row, col].gameObject.GetComponent<Renderer>().material.color = color;
+        if (elements[row, col].value)
+        {
+            elements[row, col].gameObject.GetComponent<Renderer>().enabled = true;
+        }
+        else {
+            elements[row, col].gameObject.GetComponent<Renderer>().enabled = false;
+        }
     }
 }
