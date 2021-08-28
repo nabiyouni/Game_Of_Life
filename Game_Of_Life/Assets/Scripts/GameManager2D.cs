@@ -42,9 +42,7 @@ public class GameManager2D : MonoBehaviour
                 elements[i, k].gameObject.GetComponent<Renderer>().material = sampleElement.GetComponent<Renderer>().material;
                 elements[i, k].gameObject.transform.parent = parentTransform.transform;
                 elements[i, k].gameObject.transform.position = new Vector3(i, 0, k);
-                if (!elements[i, k].value) {
-                    elements[i, k].gameObject.GetComponent<Renderer>().enabled = false;
-                }
+                setRenderer(i, k);
             }
         }
     }
@@ -52,7 +50,76 @@ public class GameManager2D : MonoBehaviour
     void Update()
     {
         setElementOnClick();
-        
+        if (Time.fixedTime >= gameFrameStart && runState)
+        {
+            updateGameOfLifeMatrixValues();
+            gameFrameStart = Time.fixedTime + gameFrameLatency;
+        }
+    }
+
+    private void updateGameOfLifeMatrixValues()
+    {
+        var newMatrix = new bool[rowsCount, colsCount];
+        for (int i = 0; i < rowsCount; i++)
+        {
+            for (int k = 0; k < colsCount; k++)
+            {
+                newMatrix[i, k] = gameRule(i, k);
+            }
+        }
+        for (int i = 0; i < rowsCount; i++)
+        {
+            for (int k = 0; k < colsCount; k++)
+            {
+                elements[i, k].value = newMatrix[i, k];
+                setRenderer(i, k);
+            }
+        }
+    }
+
+    private bool gameRule(int row, int col)
+    {
+        int neighborsCount = mirrorTheMatrix ? countNeighborsMirror(row, col) : countNeighbors(row, col);
+        if (elements[row, col].value)
+        {
+            return neighborsCount == 2 || neighborsCount == 3 ? true : false;
+        }
+        else
+        {
+            return neighborsCount == 3 ? true : false;
+        }
+    }
+
+    private int countNeighborsMirror(int row, int col)
+    {
+        int sum = 0;
+        int localRow = 0;
+        int localCol = 0;
+        for (int i = -1; i < 2; i++)
+        {
+            localRow = (row + i) < 0 ? rowsCount + i : (row + i >= rowsCount) ? 0 : row + i;
+            for (int k = -1; k < 2; k++)
+            {
+                localCol = (col + k) < 0 ? colsCount + k : (col + k >= colsCount) ? 0 : col + k;
+                sum += elements[localRow, localCol].value ? 1 : 0;
+            }
+        }
+        sum -= elements[row, col].value ? 1 : 0;
+        return sum;
+    }
+
+    private int countNeighbors(int row, int col)
+    {
+        int sum = 0;
+        for (int i = -1; i < 2; i++)
+        {
+            for (int k = -1; k < 2; k++)
+            {
+                sum += (row + i >= 0) && (row + i < rowsCount) && (col + k >= 0) && (col + k < colsCount) && elements[row + i, col + k].value ? 1 : 0;
+            }
+        }
+        sum -= elements[row, col].value ? 1 : 0;
+        return sum;
     }
 
     private void setElementOnClick()
@@ -73,12 +140,22 @@ public class GameManager2D : MonoBehaviour
     private void toggle(int row, int col)
     {
         elements[row, col].value = !elements[row, col].value;
+        setRenderer(row, col);
+    }
+
+    private void setRenderer(int row, int col) {
         if (elements[row, col].value)
         {
             elements[row, col].gameObject.GetComponent<Renderer>().enabled = true;
         }
-        else {
+        else
+        {
             elements[row, col].gameObject.GetComponent<Renderer>().enabled = false;
         }
+    }
+
+    public void setRunState(bool state)
+    {
+        runState = state;
     }
 }
