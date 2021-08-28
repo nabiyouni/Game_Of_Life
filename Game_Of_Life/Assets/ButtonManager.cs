@@ -6,7 +6,7 @@ using TMPro;
 
 public class ButtonManager : MonoBehaviour
 {
-    public GameManager2D gameManager;
+    public GameManager3D gameManager;
 
     public UnityEngine.UI.Button startStopButton;
     private string startString = "Start";
