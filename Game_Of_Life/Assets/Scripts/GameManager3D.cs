@@ -16,6 +16,8 @@ public class GameManager3D : MonoBehaviour
 
     public Color activeElementColor;
     public Color deactiveElementColor;
+    private float colorAlphaOffset = 0.5f;
+
     public Shader activeElementShader;
     public Shader deactiveElementShader;
     public Vector3 activeElementScale = new Vector3(0.9f, 0.9f, 0.9f);
@@ -180,16 +182,18 @@ public class GameManager3D : MonoBehaviour
         if (elements[row, col, dep].value)
         {
             elements[row, col, dep].gameObject.GetComponent<Renderer>().enabled = true;
-            activeElementColor.a = (float)((colsCount - col) + 1) / (float)colsCount;
+
+            float r = (float)(rowsCount - row) / (float)rowsCount;
+            float g = (float)(colsCount - col) / (float)colsCount;
+            float b = (float)(depsCount - dep) / (float)depsCount;
+            float initialAlpha = (float)((colsCount - col) + 1) / (float)colsCount;
+            float scaledAlpha = (initialAlpha * (1-colorAlphaOffset)) + colorAlphaOffset;
+            activeElementColor = new Color(r,g,b, scaledAlpha);
             elements[row, col, dep].gameObject.GetComponent<Renderer>().material.color = activeElementColor;
-            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.color = activeElementColor;
-            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.shader = activeElementShader;
         }
         else
         {
             elements[row, col, dep].gameObject.GetComponent<Renderer>().enabled = false;
-            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.color = deactiveElementColor;
-            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.shader = deactiveElementShader;
         }
     }
 
