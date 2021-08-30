@@ -326,7 +326,7 @@
 "Assets/Scripts/GameManager2D.cs"
 "Assets/Scripts/GameManager3D.cs"
 "Assets/Scripts/UIManager.cs"
-"Assets/UIManager2D.cs"
+"Assets/Scripts/UIManager2D.cs"
 -langversion:8.0
 
 /deterministic

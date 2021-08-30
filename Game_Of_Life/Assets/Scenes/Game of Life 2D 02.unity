@@ -718,6 +718,10 @@ PrefabInstance:
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: UIManager2D, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 3402700998935504292, guid: 53e566b1a9fdc4844b233b3db2ca2c01, type: 3}
+      propertyPath: m_text
+      value: Game of Life 2D
+      objectReference: {fileID: 0}
     - target: {fileID: 3402700999401312634, guid: 53e566b1a9fdc4844b233b3db2ca2c01, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
