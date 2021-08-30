@@ -21,7 +21,7 @@ public class GameManager3D : MonoBehaviour
     public Vector3 activeElementScale = new Vector3(0.9f, 0.9f, 0.9f);
     public Vector3 deactiveElementScale = new Vector3(0.1f, 0.1f, 0.1f);
 
-    public float gameFrameLatency = 0.5f;
+    public float frameSpeed = 0.5f;
     private float gameFrameStart;
 
     public bool mirrorTheMatrix = false;
@@ -35,7 +35,7 @@ public class GameManager3D : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameFrameStart = Time.time + gameFrameLatency;
+        gameFrameStart = Time.time + frameSpeed;
         elements = new Element[rowsCount, colsCount, depsCount];
 
         for (int i = 0; i < rowsCount; i++)
@@ -64,7 +64,7 @@ public class GameManager3D : MonoBehaviour
         if (Time.fixedTime >= gameFrameStart && runState)
         {
             updateGameOfLifeMatrixValues();
-            gameFrameStart = Time.fixedTime + gameFrameLatency;
+            gameFrameStart = Time.fixedTime + frameSpeed;
         }
     }
 
@@ -232,9 +232,11 @@ public class GameManager3D : MonoBehaviour
                     }
                     setRenderer(i, j, k);
                 }
-                float a = (float)((colsCount - j) + 1) / (float)colsCount;
-                Debug.Log("alpha: "+a+ "     col: "+ (float)(j + 1));
             }
         }
+    }
+
+    public void setFrameSpeed(float speed) {
+        frameSpeed = speed;
     }
 }
