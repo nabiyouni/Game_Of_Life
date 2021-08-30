@@ -11,6 +11,9 @@ public class UIManager : MonoBehaviour
     public UnityEngine.UI.Button startStopButton;
     public UnityEngine.UI.Slider simulationSpeedSlider;
     public UnityEngine.UI.Slider randomSparcitySlider;
+
+    public UnityEngine.UI.Toggle mirrorGridToggle;
+
     private string startString = "Start";
     private string stopString = "Stop";
     public UnityEngine.UI.Button clearButton;
@@ -39,12 +42,18 @@ public class UIManager : MonoBehaviour
         gameManager.randomizeScreen();
     }
 
-    public void setFrameSpeed() {
+    public void setFrameSpeed()
+    {
         gameManager.setFrameSpeed(simulationSpeedSlider.value);
     }
 
     public void setRandomSparcity(float sparcity)
     {
         gameManager.setRandomSparcity(randomSparcitySlider.value);
+    }
+
+    public void setMirrorGrid()
+    {
+        gameManager.setMirrorGrid(mirrorGridToggle.isOn);
     }
 }

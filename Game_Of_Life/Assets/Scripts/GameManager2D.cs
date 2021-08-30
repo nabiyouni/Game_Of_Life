@@ -10,7 +10,7 @@ public class GameManager2D : MonoBehaviour
         public GameObject gameObject { get; set; }
     }
 
-    public int rowsCount = 38;
+    public int rowsCount = 34;
     public int colsCount = 23;
 
     public Color activeElementColor = Color.white;
@@ -19,6 +19,7 @@ public class GameManager2D : MonoBehaviour
 
     public float gameFrameLatency = 0.5f;
     private float gameFrameStart;
+    private float randomSparcity = 0.5f;
 
     public bool mirrorTheMatrix = false;
     public GameObject parentTransform;
@@ -177,18 +178,24 @@ public class GameManager2D : MonoBehaviour
         {
             for (int k = 0; k < colsCount; k++)
             {
-                if (Random.Range(0, 2) == 1)
-                {
-                    elements[i, k].value = true;
-                    setRenderer(i, k);
-                }
-                else
-                {
-                    elements[i, k].value = false;
-                    setRenderer(i, k);
-                }
-
+                elements[i,  k].value = Random.Range(0f, 1f) < randomSparcity ? true : false;
+                setRenderer(i, k);
             }
         }
+    }
+
+    public void setFrameSpeed(float speed)
+    {
+        gameFrameLatency = speed;
+    }
+
+    public void setRandomSparcity(float sparcity)
+    {
+        randomSparcity = sparcity;
+    }
+
+    public void setMirrorGrid(bool mirror)
+    {
+        mirrorTheMatrix = mirror;
     }
 }
