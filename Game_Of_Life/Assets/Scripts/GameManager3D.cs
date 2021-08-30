@@ -21,8 +21,9 @@ public class GameManager3D : MonoBehaviour
     public Vector3 activeElementScale = new Vector3(0.9f, 0.9f, 0.9f);
     public Vector3 deactiveElementScale = new Vector3(0.1f, 0.1f, 0.1f);
 
-    public float frameSpeed = 0.5f;
+    private float frameSpeed = 0.5f;
     private float gameFrameStart;
+    private float randomSparcity = 0.5f;
 
     public bool mirrorTheMatrix = false;
     public GameObject parentTransform;
@@ -220,7 +221,7 @@ public class GameManager3D : MonoBehaviour
             {
                 for (int k = 0; k < depsCount; k++)
                 {
-                    if (Random.Range(0, 2) == 1)
+                    if (Random.Range(0f, 2f) < randomSparcity)
                     {
                         elements[i, j, k].value = true;
                         elements[i, j, k].gameObject.transform.localScale = activeElementScale;
@@ -238,5 +239,10 @@ public class GameManager3D : MonoBehaviour
 
     public void setFrameSpeed(float speed) {
         frameSpeed = speed;
+    }
+
+    public void setRandomSparcity(float sparcity)
+    {
+        randomSparcity = sparcity;
     }
 }

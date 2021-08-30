@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
 
     public UnityEngine.UI.Button startStopButton;
     public UnityEngine.UI.Slider simulationSpeedSlider;
+    public UnityEngine.UI.Slider randomSparcitySlider;
     private string startString = "Start";
     private string stopString = "Stop";
     public UnityEngine.UI.Button clearButton;
@@ -40,5 +41,10 @@ public class UIManager : MonoBehaviour
 
     public void setFrameSpeed() {
         gameManager.setFrameSpeed(simulationSpeedSlider.value);
+    }
+
+    public void setRandomSparcity(float sparcity)
+    {
+        gameManager.setRandomSparcity(randomSparcitySlider.value);
     }
 }
