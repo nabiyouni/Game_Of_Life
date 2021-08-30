@@ -10,14 +10,14 @@ public class GameManager3D : MonoBehaviour
         public GameObject gameObject { get; set; }
     }
 
-    private int rowsCount = 40;
-    private int colsCount = 20;
-    private int depsCount = 20;
+    public static int rowsCount = 40;
+    public static int colsCount = 20;
+    public static int depsCount = 10;
 
-    public Color activeElementColor = Color.white;
-    public Color deactiveElementColor = Color.black;
-    private Material activeElementMaterial;
-    private Material deactiveElementMaterial;
+    public Color activeElementColor;
+    public Color deactiveElementColor;
+    public Shader activeElementShader;
+    public Shader deactiveElementShader;
     public Vector3 activeElementScale = new Vector3(0.9f, 0.9f, 0.9f);
     public Vector3 deactiveElementScale = new Vector3(0.1f, 0.1f, 0.1f);
 
@@ -38,21 +38,18 @@ public class GameManager3D : MonoBehaviour
         gameFrameStart = Time.time + gameFrameLatency;
         elements = new Element[rowsCount, colsCount, depsCount];
 
-        deactiveElementColor.a = 0.3f;
-        activeElementColor.a = 0.5f;
-
         for (int i = 0; i < rowsCount; i++)
         {
             for (int j = 0; j < colsCount; j++)
             {
                 for (int k = 0; k < depsCount; k++)
                 {
+                    elements[i, j, k].value = false;
                     elements[i, j, k].gameObject = GameObject.Instantiate(sampleElement);
                     elements[i, j, k].gameObject.GetComponent<Renderer>().material = sampleElement.GetComponent<Renderer>().material;
                     elements[i, j, k].gameObject.transform.parent = parentTransform.transform;
                     elements[i, j, k].gameObject.transform.position = new Vector3(i, j, k);
-                    var color = elements[i, j, k].value ? activeElementColor : deactiveElementColor;
-                    elements[i, j, k].gameObject.GetComponent<Renderer>().material.color = color;
+                    setRenderer(i, j, k);
                     var scale = elements[i, j, k].value ? activeElementScale : deactiveElementScale;
                     elements[i, j, k].gameObject.transform.localScale = scale;
                 }
@@ -91,8 +88,7 @@ public class GameManager3D : MonoBehaviour
                 for (int k = 0; k < depsCount; k++)
                 {
                     elements[i, j, k].value = newMatrix[i, j, k];
-                    var color = newMatrix[i, j, k] ? activeElementColor : deactiveElementColor;
-                    elements[i, j, k].gameObject.GetComponent<Renderer>().material.color = color;
+                    setRenderer(i, j, k);
                     var scale = newMatrix[i, j, k] ? activeElementScale : deactiveElementScale;
                     elements[i, j, k].gameObject.transform.localScale = scale;
                 }
@@ -172,10 +168,28 @@ public class GameManager3D : MonoBehaviour
     private void toggle(int row, int col, int dep)
     {
         elements[row, col, dep].value = !elements[row, col, dep].value;
-        var color = elements[row, col, dep].value ? activeElementColor : deactiveElementColor;
-        elements[row, col, dep].gameObject.GetComponent<Renderer>().material.color = color;
+        setRenderer(row, col, dep);
         var scale = elements[row, col, dep].value ? activeElementScale : deactiveElementScale;
         elements[row, col, dep].gameObject.transform.localScale = scale;
+    }
+
+    private void setRenderer(int row, int col, int dep)
+    {
+        elements[row, col, dep].gameObject.GetComponent<Renderer>().material = sampleElement.GetComponent<Renderer>().material;
+        if (elements[row, col, dep].value)
+        {
+            elements[row, col, dep].gameObject.GetComponent<Renderer>().enabled = true;
+            activeElementColor.a = (float)((colsCount - col) + 1) / (float)colsCount;
+            elements[row, col, dep].gameObject.GetComponent<Renderer>().material.color = activeElementColor;
+            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.color = activeElementColor;
+            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.shader = activeElementShader;
+        }
+        else
+        {
+            elements[row, col, dep].gameObject.GetComponent<Renderer>().enabled = false;
+            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.color = deactiveElementColor;
+            //elements[row, col, dep].gameObject.GetComponent<Renderer>().material.shader = deactiveElementShader;
+        }
     }
 
     public void setRunState(bool state)
@@ -192,8 +206,7 @@ public class GameManager3D : MonoBehaviour
                 for (int k = 0; k < depsCount; k++)
                 {
                     elements[i, j, k].value = false;
-                    elements[i, j, k].gameObject.GetComponent<Renderer>().material.color = deactiveElementColor;
-                    elements[i, j, k].gameObject.transform.localScale = deactiveElementScale;
+                    setRenderer(i, j, k);
                 }
             }
         }
@@ -210,17 +223,17 @@ public class GameManager3D : MonoBehaviour
                     if (Random.Range(0, 2) == 1)
                     {
                         elements[i, j, k].value = true;
-                        elements[i, j, k].gameObject.GetComponent<Renderer>().material.color = activeElementColor;
                         elements[i, j, k].gameObject.transform.localScale = activeElementScale;
                     }
                     else
                     {
                         elements[i, j, k].value = false;
-                        elements[i, j, k].gameObject.GetComponent<Renderer>().material.color = deactiveElementColor;
                         elements[i, j, k].gameObject.transform.localScale = deactiveElementScale;
                     }
-
+                    setRenderer(i, j, k);
                 }
+                float a = (float)((colsCount - j) + 1) / (float)colsCount;
+                Debug.Log("alpha: "+a+ "     col: "+ (float)(j + 1));
             }
         }
     }
