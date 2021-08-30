@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
+// manages UI for the 3D Game of Life
+// connects UI elements to Game Manager
 public class UIManager : MonoBehaviour
 {
     public GameManager3D gameManager;

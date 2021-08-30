@@ -10,36 +10,39 @@ public class GameManager3D : MonoBehaviour
         public GameObject gameObject { get; set; }
     }
 
+    // grid size
     public static int rowsCount = 40;
     public static int colsCount = 20;
     public static int depthsCount = 10;
 
+    // color for the live cell
     public Color activeElementColor;
-    public Color deactiveElementColor;
+    // set an offset for cell transparency
     private float colorAlphaOffset = 0.5f;
 
-    public Shader activeElementShader;
-    public Shader deactiveElementShader;
-
+    // speed for game frames (seconds)
     private float frameSpeed = 0.5f;
     private float gameFrameStart;
+    // sparcity of the randomization
     private float randomSparcity = 0.5f;
 
+    // up and down as well as right and left of the grid will be connected if this is true
     public bool mirrorTheMatrix = false;
     public GameObject parentTransform;
     public GameObject sampleElement;
+    // main array holding the elements of the grid
     public Element[,,] elements;
     public Camera camera;
 
     private bool runState = false;
 
+    // show a sub frame of visible layers
     private int lastVisibleVerticalLayer;
     private int lastVisibleHorizontalLayer;
     private int lastVisibleDepthLayer;
 
     public FrameViewController frameViewController;
 
-    // Start is called before the first frame update
     void Start()
     {
         frameViewController = this.GetComponent<FrameViewController>();
@@ -68,7 +71,6 @@ public class GameManager3D : MonoBehaviour
         lastVisibleHorizontalLayer = colsCount - 1;
     }
 
-    // Update is called once per frame
     void Update()
     {
         if (Time.fixedTime >= gameFrameStart && runState)
@@ -80,6 +82,7 @@ public class GameManager3D : MonoBehaviour
         setVisibleLayer();
     }
 
+    // update the game grid based on Game of Life rules
     private void updateGameOfLifeMatrixValues()
     {
         var newMatrix = new bool[rowsCount, colsCount, depthsCount];
@@ -106,6 +109,7 @@ public class GameManager3D : MonoBehaviour
         }
     }
 
+    // Apply game rules to each element
     private bool gameRule(int row, int col, int dep)
     {
         int neighborsCount = mirrorTheMatrix ? countNeighborsMirror(row, col, dep) : countNeighbors(row, col, dep);
@@ -119,6 +123,7 @@ public class GameManager3D : MonoBehaviour
         }
     }
 
+    //counts live neighbor cell and apply grid mirror
     private int countNeighborsMirror(int row, int col, int dep)
     {
         int sum = 0;
@@ -142,6 +147,7 @@ public class GameManager3D : MonoBehaviour
         return sum;
     }
 
+    //counts live neighbor cell and does not apply grid mirror
     private int countNeighbors(int row, int col, int dep)
     {
         int sum = 0;
@@ -159,6 +165,7 @@ public class GameManager3D : MonoBehaviour
         return sum;
     }
 
+    // toggle an element on left click
     private void setElementOnClick()
     {
         if (Input.GetMouseButtonDown(0))
@@ -175,6 +182,7 @@ public class GameManager3D : MonoBehaviour
         }
     }
 
+    // set the visible part of the grid
     private void setVisibleLayer()
     {
         int verticalDelta = 0;
@@ -229,12 +237,14 @@ public class GameManager3D : MonoBehaviour
         }
     }
 
+    // toggle an element
     private void toggle(int row, int col, int dep)
     {
         elements[row, col, dep].value = !elements[row, col, dep].value;
         setRenderer(row, col, dep);
     }
 
+    // turn renderer on / off for each cell
     private void setRenderer(int row, int col, int dep)
     {
         elements[row, col, dep].gameObject.GetComponent<Renderer>().material = sampleElement.GetComponent<Renderer>().material;
@@ -256,6 +266,7 @@ public class GameManager3D : MonoBehaviour
         }
     }
 
+    // render the visible part of the grid
     private void renderLayers(int verticalDelta, int horizontalDelta, int depthDelta)
     {
         if (verticalDelta != 0)

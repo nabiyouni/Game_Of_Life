@@ -1,9 +1,10 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
-    - GameManager2D
+    - CameraController
+    - FrameViewController
+    - GameManager3D
     - UIManager
-    - UIManager2D
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -26,7 +27,7 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.Slider
     - UnityEngine.UI.Toggle
   sceneClasses:
-    Assets/Scenes/Game of Life 2D 02.unity:
+    Assets/Scenes/Game of Life 3D 05.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -49,8 +50,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 65
       Script: {instanceID: 0}
-    - Class: 81
-      Script: {instanceID: 0}
     - Class: 89
       Script: {instanceID: 0}
     - Class: 104
@@ -72,15 +71,17 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 3878}
     - Class: 114
-      Script: {instanceID: 4010}
-    - Class: 114
       Script: {instanceID: 4114}
+    - Class: 114
+      Script: {instanceID: 4554}
+    - Class: 114
+      Script: {instanceID: 4594}
+    - Class: 114
+      Script: {instanceID: 4606}
     - Class: 114
       Script: {instanceID: 4686}
     - Class: 114
       Script: {instanceID: 4764}
-    - Class: 114
-      Script: {instanceID: 5050}
     - Class: 114
       Script: {instanceID: 5292}
     - Class: 114
@@ -88,7 +89,7 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 5740}
     - Class: 114
-      Script: {instanceID: 21140}
+      Script: {instanceID: 6390}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -912,6 +913,6 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   platform: 2
   scenePathNames:
-  - Assets/Scenes/Game of Life 2D 02.unity
+  - Assets/Scenes/Game of Life 3D 05.unity
   playerPath: /Users/mahdi/Documents/Personal/Unity/Game of Life/Builds/Game of Life
-    2D.app
+    3D.app

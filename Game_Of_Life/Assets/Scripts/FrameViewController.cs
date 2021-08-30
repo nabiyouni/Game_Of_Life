@@ -34,15 +34,7 @@ public class FrameViewController : MonoBehaviour
 
         sampleEdge.SetActive(true);
 
-        edges = new GameObject[edgeCount];
-        for (int i = 0; i < edgeCount; i++)
-        {
-            edges[i] = GameObject.Instantiate(sampleEdge);
-            edges[i].gameObject.transform.SetParent(parentTransform.transform);
-            edges[i].gameObject.GetComponent<Renderer>().material = edgeMaterial;
-            edges[i].gameObject.GetComponent<Renderer>().material.color = edgeColor;
-        }
-
+        // create a sub frame for partial grid using primitive cubes
         subFrameEdges = new GameObject[subFrameEdgeCount];
         for (int i = 0; i < subFrameEdgeCount; i++)
         {
@@ -53,6 +45,17 @@ public class FrameViewController : MonoBehaviour
         }
 
         subFrameViewer((int)x, (int)y, (int)z);
+
+        // create a frame for the grid to imporve spatial understanding 
+
+        edges = new GameObject[edgeCount];
+        for (int i = 0; i < edgeCount; i++)
+        {
+            edges[i] = GameObject.Instantiate(sampleEdge);
+            edges[i].gameObject.transform.SetParent(parentTransform.transform);
+            edges[i].gameObject.GetComponent<Renderer>().material = edgeMaterial;
+            edges[i].gameObject.GetComponent<Renderer>().material.color = edgeColor;
+        }
 
         //Lines in x direction
         edges[0].transform.localScale = new Vector3(x + 2 * o, e, e);
@@ -94,6 +97,7 @@ public class FrameViewController : MonoBehaviour
         edges[11].transform.transform.position = new Vector3(-o, y + o, z / 2);
     }
 
+    // set the subframe for any (x,y,z) size of the subframe
     public void subFrameViewer(int x, int y, int z)
     {
         float e = subFrameEdgeThickness;

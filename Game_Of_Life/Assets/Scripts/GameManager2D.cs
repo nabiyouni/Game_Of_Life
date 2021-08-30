@@ -10,17 +10,20 @@ public class GameManager2D : MonoBehaviour
         public GameObject gameObject { get; set; }
     }
 
+    // grid size
     public int rowsCount = 34;
     public int colsCount = 23;
 
+    // color for the live cell
     public Color activeElementColor = Color.white;
-    private Material activeElementMaterial;
-    private Material deactiveElementMaterial;
 
+    // speed for game frames (seconds)
     public float gameFrameLatency = 0.5f;
     private float gameFrameStart;
+    // sparcity of the randomization
     private float randomSparcity = 0.5f;
 
+    // up and down as well as right and left of the grid will be connected if this is true
     public bool mirrorTheMatrix = false;
     public GameObject parentTransform;
     public GameObject sampleElement;
@@ -58,6 +61,7 @@ public class GameManager2D : MonoBehaviour
         }
     }
 
+    // update the game grid based on Game of Life rules
     private void updateGameOfLifeMatrixValues()
     {
         var newMatrix = new bool[rowsCount, colsCount];
@@ -78,6 +82,7 @@ public class GameManager2D : MonoBehaviour
         }
     }
 
+    // Apply game rules to each element
     private bool gameRule(int row, int col)
     {
         int neighborsCount = mirrorTheMatrix ? countNeighborsMirror(row, col) : countNeighbors(row, col);
@@ -91,6 +96,7 @@ public class GameManager2D : MonoBehaviour
         }
     }
 
+    //counts live neighbor cell and apply grid mirror
     private int countNeighborsMirror(int row, int col)
     {
         int sum = 0;
@@ -109,6 +115,7 @@ public class GameManager2D : MonoBehaviour
         return sum;
     }
 
+    //counts live neighbor cell and does not apply grid mirror
     private int countNeighbors(int row, int col)
     {
         int sum = 0;
@@ -123,6 +130,7 @@ public class GameManager2D : MonoBehaviour
         return sum;
     }
 
+    // toggle an element on left click
     private void setElementOnClick()
     {
         if (Input.GetMouseButtonDown(0))
@@ -138,6 +146,7 @@ public class GameManager2D : MonoBehaviour
         }
     }
 
+    // toggle an element
     private void toggle(int row, int col)
     {
         elements[row, col].value = !elements[row, col].value;

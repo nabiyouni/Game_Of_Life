@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// rotates the camera on mouse drag
 public class CameraController : MonoBehaviour
 {
 
@@ -23,15 +24,16 @@ public class CameraController : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
+            // if mouse is dragging add to the delta rotation
             Vector3 deltaRotationThisFrame = Input.mousePosition - previousMousePosition;
             deltaRotation += deltaRotationThisFrame;
         }
+        // apply part of the current rotation to the camera to create momentum
         Vector3 deltaRotationToApply = deltaRotation * motionRate;
-        float angleWithY = Mathf.Acos(Vector3.Dot(this.transform.forward.normalized, Vector3.up));
-
         this.transform.RotateAround(rotationPoint, this.transform.right, -deltaRotationToApply.y * mouseSensitivity);
         this.transform.RotateAround(rotationPoint, Vector3.up, deltaRotationToApply.x * mouseSensitivity);
 
+        // reduce the delta rotation by a rate each frame so the rotation can continue after left click up and create momentum
         deltaRotation = deltaRotation * (1 - motionRate);
         previousMousePosition = Input.mousePosition;
     }

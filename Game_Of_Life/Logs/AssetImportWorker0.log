@@ -676,3 +676,87 @@ AssetImportParameters requested are different than current active one (requested
   custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
   custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
   custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 2291.902387 seconds.
+  path: Assets/Scenes/Game of Life 3D.unity
+  artifactKey: Guid(2f90109d6a1694df1affa1560833fb27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game of Life 3D.unity using Guid(2f90109d6a1694df1affa1560833fb27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0f26e7ae133e2d7def2015ed6f1ac086') in 0.009885 seconds 
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 2.29 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 15 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 195.7 MB.
+System memory in use after: 195.9 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3497.
+Total: 4.323680 ms (FindLiveObjects: 0.319016 ms CreateObjectMapping: 0.136617 ms MarkObjects: 3.852716 ms  DeleteObjects: 0.014228 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Prepare
+Refreshing native plugins compatible for Editor in 2.37 ms, found 2 plugins.
+Preloading 0 native plugins for Editor in 0.00 ms.
+Unloading 15 Unused Serialized files (Serialized files now loaded: 0)
+System memory in use before: 196.0 MB.
+System memory in use after: 196.2 MB.
+
+Unloading 15 unused Assets to reduce memory usage. Loaded Objects now: 3497.
+Total: 4.176268 ms (FindLiveObjects: 0.287955 ms CreateObjectMapping: 0.109687 ms MarkObjects: 3.762634 ms  DeleteObjects: 0.015186 ms)
+
+AssetImportParameters requested are different than current active one (requested -> active):
+  custom:video-decoder-ogg-theora: a1e56fd34408186e4bbccfd4996cb3dc -> 
+  custom:container-muxer-webm: aa71ff27fc2769a1b78a27578f13a17b -> 
+  custom:container-demuxer-webm: 4f35f7cbe854078d1ac9338744f61a02 -> 
+  custom:container-demuxer-ogg: 62fdf1f143b41e24485cea50d1cbac27 -> 
+  custom:video-encoder-webm-vp8: eb34c28f22e8b96e1ab97ce403110664 -> 
+  custom:framework-osx-AVFoundation: e770b220cccbd017edd2c1fefb359320 -> 
+  custom:video-decoder-webm-vp8: 9c59270c3fd7afecdb556c50c9e8de78 -> 
+  custom:audio-decoder-ogg-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+  custom:audio-encoder-webm-vorbis: bf7c407c2cedff20999df2af8eb42d56 -> 
+========================================================================
+Received Import Request.
+  Time since last request: 2897.435319 seconds.
+  path: Assets/Scenes/Game of Life 3D 01.unity
+  artifactKey: Guid(2f90109d6a1694df1affa1560833fb27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game of Life 3D 01.unity using Guid(2f90109d6a1694df1affa1560833fb27) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '3ff568e26572fe7815985ae351108ea3') in 0.002514 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.430618 seconds.
+  path: Assets/Scenes/Game of Life 2D 02.unity
+  artifactKey: Guid(e66b2ac24f5f7425c951abfc4914c27f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game of Life 2D 02.unity using Guid(e66b2ac24f5f7425c951abfc4914c27f) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: 'bb9b4976575a801480da8fb26605740e') in 0.001264 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 7.025854 seconds.
+  path: Assets/Scenes/Game of Life 2D 01.unity
+  artifactKey: Guid(fc17e7833d75d4fd9a2a4feac3ca5b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game of Life 2D 01.unity using Guid(fc17e7833d75d4fd9a2a4feac3ca5b1d) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '36185905bbe0687c97b1afc31152cf4e') in 0.002393 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 1.937030 seconds.
+  path: Assets/Scenes/Game of Life 3D 02.unity
+  artifactKey: Guid(d55d114808a514bb88e6713138e8ecb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game of Life 3D 02.unity using Guid(d55d114808a514bb88e6713138e8ecb0) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '55c8e29ad0d38ebbcbadece16315cf51') in 0.002025 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.164451 seconds.
+  path: Assets/Scenes/Game of Life 3D 03.unity
+  artifactKey: Guid(ba4cfb4b714c34b23add55c69cadaee8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/Game of Life 3D 03.unity using Guid(ba4cfb4b714c34b23add55c69cadaee8) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '89ed3f0b3bfffd8c3adbd23e77ead5d8') in 0.002158 seconds 
+========================================================================
+Received Import Request.
+  Time since last request: 0.673414 seconds.
+  path: Assets/Scenes/SampleScene.unity
+  artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
+Start importing Assets/Scenes/SampleScene.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '7037885ce4f86403c96951ba7037a600') in 0.001887 seconds 
