@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   activeElementColor: {r: 1, g: 1, b: 1, a: 1}
-  deactiveElementColor: {r: 1, g: 0.7028302, b: 0.7028302, a: 0.043137256}
+  deactiveElementColor: {r: 0, g: 0, b: 0, a: 0.043137256}
   activeElementShader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   deactiveElementShader: {fileID: 4800000, guid: c3e2705c47ff54bb8b044e80c2d600a4, type: 3}
   activeElementScale: {x: 1, y: 1, z: 1}
